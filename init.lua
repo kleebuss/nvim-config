@@ -267,6 +267,9 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  
+  require 'custom.plugins.filetree',
+  require 'custom.plugins.tmux',
 }, {})
 
 -- [[ Setting options ]]
@@ -309,6 +312,10 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.o.colorcolumn = "80"
+
+vim.o.scrolloff = 9
 
 -- [[ Basic Keymaps ]]
 
@@ -656,6 +663,16 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+-- [[ Configure NeoTree Keybinds]]
+vim.keymap.set('n', '<C-n>', '<Cmd>Neotree toggle<CR>')
+
+vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
+vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
+vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
